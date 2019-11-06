@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import  Modal  from '@material-ui/core/Modal';
 import  Fade  from '@material-ui/core/Fade';
 import  Backdrop  from '@material-ui/core/Backdrop';
-import Button from '@material-ui/core/Button';
 import './styles.css'
 import ModalForm from "./ModalForm.js";
 
@@ -31,11 +30,11 @@ class Month extends Component {
             month: this.props.monthNumber, // Recibo el numero del mes desde Year
             open: false,
             categoryValue: 'Holiday',
+            dateId: null,
         };
 
-
+        
     }
-
 
     componentDidMount(weekDay, numberDays) {
         console.log('GrandChild did mount.');
@@ -115,10 +114,12 @@ class Month extends Component {
 
     // When press a day
     handleDays = (targetId) => {
-
-        document.getElementById(targetId).style.background = 'gray';
-        this.handleOpen();
-
+        //document.getElementById(targetId).style.background = 'gray';
+        // Set the element id when clicked
+        this.setState(
+            {dateId: targetId},
+            this.handleOpen()
+        );
     }
 
     handleOpen = () => {
@@ -131,6 +132,11 @@ class Month extends Component {
     handleCategory = (event) => {
         this.setState({categoryValue: event.target.value});
     };
+
+    changeColorDateMonth = (color) => {
+        //alert(color);
+        document.getElementById(this.state.dateId).style.background = color;
+    }
 
     render() {
         const {rows} = this.state; // Destructuring:  rows => this.state.rows
@@ -160,10 +166,7 @@ class Month extends Component {
                     <Fade in={this.state.open} timeout={10}>
                     <div className="modalPaper">
                         <input className="modalTitle" type="text" placeholder="Add event title"/>
-                        <ModalForm />
-                        <Button variant="contained" color="primary">
-                            Primary
-                        </Button>
+                        <ModalForm closeModal={this.handleClose} changeColor={(color) => this.changeColorDateMonth(color)}/>
                     </div>
                     </Fade>
                 </Modal>
