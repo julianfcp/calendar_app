@@ -1,15 +1,13 @@
 import React from 'react';
 import { Button, FormControl, RadioGroup, FormControlLabel, Radio, Grid, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import './styles.css';
 
 const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1),
     float: "left",
-  },
-  input: {
-    display: 'none',
   },
   radioGroup: {
       margin: theme.spacing(1),
@@ -41,9 +39,14 @@ const ModalForm = ({closeModal, changeColor}) => {
   return (
     <div>
         <FormControl className="modalForm">
-          <Grid container spacing={1}>
+          <Grid container spacing={0}>
             <Grid item xs={12}>
-              <RadioGroup row className={classes.radioGroup} aria-label="gender" name="gender1" value={value} onChange={handleChangeRadio}>
+              <Typography variant="h4">
+                <input className="modalTitle" type="text" placeholder="Add event title"/>
+              </Typography>
+            </Grid>
+            <Grid item xs={12} container alignItems="center" justify="center">
+              <RadioGroup row className={classes.RadioGroup} aria-label="gender" value={value} onChange={handleChangeRadio}>
                 <FormControlLabel value="Holiday" 
                   control={<Radio onClick={() => changeColor(colors.Holiday)} color={colors.Holiday} />} label="Holiday" />
                 <FormControlLabel value="Birthday"
@@ -52,18 +55,18 @@ const ModalForm = ({closeModal, changeColor}) => {
                   control={<Radio onClick={() => changeColor(colors.Busy)} color={colors.Busy} />} label="Busy" />
               </RadioGroup>
             </Grid>
-            <Grid item xs={12}>
-            <TextField
-                id="filled-multiline-static"
-                label="Description"
-                multiline
-                rows="4"
-                className={classes.textField}
-                margin="normal"
-                variant="filled"
-            />
+            <Grid item xs={12} container alignItems="center" justify="center">
+              <TextField
+                  id="filled-multiline-static"
+                  label="Description"
+                  multiline
+                  rows="4"
+                  className={classes.textField}
+                  margin="normal"
+                  variant="filled"
+              />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={6} container spacing={1} justify="center">
               <Button onClick={closeModal} color="primary" variant="contained">ok</Button>
             </Grid>
           </Grid>

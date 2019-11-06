@@ -100,7 +100,7 @@ class Month extends Component {
                 return (
                     counterDay ++,
                     <td
-                        id={this.state.month+'-'+counterDay}
+                        id={counterDay+'-'+this.state.month+'-'+this.props.year}
                         key={this.state.month+counterDay}
                         onClick={(e) => this.handleDays(e.target.id)}>
                         {counterDay}
@@ -165,7 +165,6 @@ class Month extends Component {
                 >
                     <Fade in={this.state.open} timeout={10}>
                     <div className="modalPaper">
-                        <input className="modalTitle" type="text" placeholder="Add event title"/>
                         <ModalForm closeModal={this.handleClose} changeColor={(color) => this.changeColorDateMonth(color)}/>
                     </div>
                     </Fade>
