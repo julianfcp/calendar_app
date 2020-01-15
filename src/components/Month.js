@@ -62,6 +62,7 @@ class Month extends Component {
         // las siguientes variables usan this.get... ya que las funciones estan dentro de la clase
         var numberDays = getNumberOfDaysInMonth(this.state.month, this.state.year);
         var weekDay = getDayInMonth(this.state.year, this.state.month);
+        console.log("mes", this.state.month);
         console.log("Dia", weekDay);
         console.log("Numero de Dias: ",numberDays);
         this.fillMonthRows(weekDay, numberDays, this.state.month);
