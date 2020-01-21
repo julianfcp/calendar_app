@@ -135,7 +135,6 @@ class Month extends Component {
     };
 
     changeColorDateMonth = (color) => {
-        //alert(color);
         document.getElementById(this.state.dateId).style.background = color;
     }
 
